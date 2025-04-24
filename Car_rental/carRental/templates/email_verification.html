@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3">
+        <h1 class="display-4 text-uppercase text-center mb-5">Email Verification</h1>
+
+        <!-- Display messages for success or errors -->
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="bg-light mb-4" style="padding: 30px;">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="otp" class="form-control p-4" placeholder="Enter OTP sent to {{ email }}" required>
+                            <input type="hidden" name="email" value="{{ email }}">
+                        </div>
+                        <button class="btn btn-primary py-3 px-5" type="submit">Verify OTP</button>
+                    </form>
+                    {% if error %}
+                    <p class="text-danger mt-3">{{ error }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

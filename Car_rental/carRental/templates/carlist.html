@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block main %}
+{% load static %}
+
+<!-- Search Filter Start -->
+<div class="container py-4">
+    <div class="card shadow-sm border-0 rounded-lg p-4" style="margin-top: 90px ;">
+        <form method="post">
+            {% csrf_token %}
+            <h4 class="text-uppercase font-weight-bold text-primary mb-4 text-center">
+                <i class="fa fa-search mr-2"></i>Find the Perfect Car
+            </h4>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="font-weight-bold">Select Brand</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light"><i class="fa fa-car"></i></span>
+                        </div>
+                        <select class="form-control custom-select" name="brand" required>
+                            <option value="">Choose a Brand</option>
+                            {% for i in brand %}
+                                <option value="{{ i.id }}">{{ i.BrandName }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="font-weight-bold">Fuel Type</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light"><i class="fa fa-gas-pump"></i></span>
+                        </div>
+                        <select class="form-control custom-select" name="fuelType" required>
+                            <option value="">Choose Fuel Type</option>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="EV">EV</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4 d-flex align-items-end" style="bottom: 16px !important;" >
+                    <div class="text-center w-100"  >
+                        <button type="submit" class="btn btn-lg btn-gradient-primary px-5 py-1 font-weight-bold shadow-sm" >
+                            <i class="fa fa-search mr-2"></i>Search Cars
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Search Filter End -->
+
+<!-- Rent A Car Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3">
+        <h2 class="text-center mb-5" style="font-size: 2.8rem; font-weight: 700; letter-spacing: 1px; color: #003366;">
+            🚗 Find Your Perfect Ride
+        </h2>
+        <div class="row">
+            {% for i in vehicles %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <a href="{% url 'carDetails' i.id %}" class="text-decoration-none text-dark">
+                    <div class="card shadow border-0 h-100 custom-card">
+                        <img class="card-img-top" src="{{ i.Vimage1.url }}" alt="{{ i.VehiclesTitle }}" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-uppercase font-weight-bold">{{ i.VehiclesTitle }}</h5>
+                            <div class="d-flex justify-content-between text-muted small mb-3">
+                                <span><i class="fa fa-car text-primary mr-1"></i>{{ i.ModelYear }}</span>
+                                <span><i class="fa fa-cogs text-primary mr-1"></i>{{ i.FuelType }}</span>
+                                <span><i class="fa fa-road text-primary mr-1"></i>{{ i.SeatingCapacity }} Seater</span>
+                            </div>
+                            <div class="mt-auto">
+                                <a class="btn btn-outline-primary btn-block font-weight-bold" href="#">
+                                    {{ i.PricePerDay }} $/Day
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Rent A Car End -->
+
+<!-- Banner Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row mx-0">
+            <div class="col-lg-6 px-0">
+                <div class="px-5 bg-secondary d-flex align-items-center justify-content-between" style="height: 350px;">
+                    <img class="img-fluid flex-shrink-0 ml-n5 w-50 mr-4" src="{% static 'img/banner-left.png' %}" alt="">
+                    <div class="text-right">
+                        <h3 class="text-uppercase text-light mb-3">Join as an owner?</h3>
+                        <p class="text-light mb-4">Earn extra income by listing your car for rent — quick, easy, and hassle-free.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 px-0">
+                <div class="px-5 bg-dark d-flex align-items-center justify-content-between" style="height: 350px;">
+                    <div class="text-left">
+                        <h3 class="text-uppercase text-light mb-3" style="color: #2B2E4A !important;" >Looking for a car?</h3>
+                        <p class="text-light mb-4" style="color: #8486A0 !important;">Find the perfect ride for your needs — browse trusted listings and book with ease.</p>
+                    </div>
+                    <img class="img-fluid flex-shrink-0 mr-n5 w-50 ml-4" src="{% static 'img/banner-right.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner End -->
+
+<!-- Vendor Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="owl-carousel vendor-carousel">
+            {% for i in "12345678" %}
+            <div class="bg-light p-4">
+                <img src="{% static 'img/vendor-'|add:i|add:'.png' %}" alt="">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Vendor End -->
+
+<!-- Custom Style -->
+<style>
+    .custom-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        min-height: 460px;
+    }
+    .custom-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .btn-gradient-primary {
+        background: linear-gradient(to right, #007bff, #00bcd4);
+        color: white;
+        border: none;
+        transition: background 0.4s ease;
+    }
+    .btn-gradient-primary:hover {
+        background: linear-gradient(to right, #0056b3, #0097a7);
+        color: #fff;
+    }
+    .input-group-text {
+        background-color: #f8f9fa;
+        border-right: 0;
+    }
+    .input-group .form-control,
+    .input-group .custom-select {
+        border-left: 0;
+    }
+</style>
+
+{% endblock %}

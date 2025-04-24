@@ -1,0 +1,111 @@
+{% block content %}
+<div class="container">
+    <div class="verify-otp-form">
+        <h2>Verify OTP</h2>
+        <form id="verify-otp-form" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="otp">Enter OTP:</label>
+                <input type="text" id="otp" name="otp" class="form-control" placeholder="Enter the OTP sent to your email" required>
+            </div>
+            <input type="hidden" name="temp_user_id" value="{{ temp_user_id }}">
+            <button type="submit" class="btn btn-primary">Verify OTP</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('verify-otp-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const otp = form.querySelector('input[name="otp"]').value;
+            const tempUserId = form.querySelector('input[name="temp_user_id"]').value;
+
+            fetch('{% url "verify_otp" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: new URLSearchParams({
+                    'otp': otp,
+                    'temp_user_id': tempUserId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = "{% url 'login' %}"; // Redirect to login after successful verification
+                } else {
+                    alert(data.error); // Display error message
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    });
+</script>
+
+<style>
+    .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .verify-otp-form {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .verify-otp-form h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-primary:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.5);
+    }
+</style>
+{% endblock %}

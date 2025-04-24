@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block main %}
+{% load static %}
+
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3 text-center">
+        <h1 class="display-4 text-uppercase mb-4 text-success">Thank You!</h1>
+        <p class="lead mb-4">Your car listing request has been successfully submitted.</p>
+
+        <div class="alert alert-info mx-auto" style="max-width: 700px;">
+            <p class="mb-2">🛻 <strong>Your vehicle will be reviewed shortly by our admin team.</strong></p>
+            <p class="mb-2">Once approved, it will appear on our website for rent.</p>
+            <p>If we need more details, our team will reach out to you via the contact information you provided.</p>
+        </div>
+
+        <h4 class="mt-5 mb-3 text-primary">📞 Get In Touch</h4>
+        <p class="mb-1"><strong>📍 Location:</strong> Nashville, TN</p>
+        <p class="mb-1"><strong>📱 Phone:</strong> +1 629-277-7475</p>
+        <p><strong>📧 Email:</strong> rideonrentt2407@gmail.com</p>
+
+        <a href="{% url 'index' %}" class="btn btn-primary mt-4 px-5 py-3">Back to Home</a>
+    </div>
+</div>
+
+{% endblock %}

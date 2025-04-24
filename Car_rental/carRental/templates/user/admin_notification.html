@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Payment Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .details {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>New Payment Received</h2>
+        <p>Payment Received for Booking Number: <strong>{{ booking.BookingNumber }}</strong>.</p>
+        <div class="details">
+            <p><strong>User:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+            <p><strong>User Email: </strong> {{ user.username }}</p>
+            <p><strong>Vehicle:</strong> {{ booking.VehicleId.VehiclesTitle }}</p>
+            <p><strong>From:</strong> {{ booking.FromDate }}</p>
+            <p><strong>To:</strong> {{ booking.ToDate }}</p>
+            <p><strong>Total Amount:</strong> {{ total_amount }} USD</p>
+        </div>
+    </div>
+</body>
+</html>

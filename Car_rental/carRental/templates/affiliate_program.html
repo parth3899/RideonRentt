@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Affiliate Programme - RideOnRentt</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-secondary navbar-dark">
+        <a href="/" class="navbar-brand">RideOnRentt</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                <a href="{% url 'userindex' %}" class="nav-item nav-link">Home</a>
+                <a href="{% url 'userabout' %}" class="nav-item nav-link">About</a>
+                <a href="{% url 'usercarlist' %}" class="nav-item nav-link">Car Listing</a>
+                <a href="{% url 'privacy_policy' %}" class="nav-item nav-link">Privacy Policy</a>
+                <a href="{% url 'terms_conditions' %}" class="nav-item nav-link">Terms & Conditions</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Affiliate Programme</h2>
+        <p>Join our affiliate program and earn rewards by promoting our services. Here’s how it works:</p>
+        <ul>
+            <li>Sign up for our affiliate program.</li>
+            <li>Receive a unique affiliate link.</li>
+            <li>Share your link with your audience.</li>
+            <li>Earn commission on every booking made through your link.</li>
+        </ul>
+        <p>For more details, please contact us.</p>
+        <ul></ul>
+            <li>Email: rideonrentt2407@gmail.com</li>
+            <li>Phone: [+1 629-277-7475]</li>
+            <li>Address: [Nashville, Tennessee]</li>
+        </ul>
+    </div>
+
+    <!-- Footer Start -->
+    <footer class="bg-secondary text-white text-center py-3">
+        <p>&copy; 2024 RideOnRent. All Rights Reserved.</p>
+    </footer>
+    <!-- Footer End -->
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

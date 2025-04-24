@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block main %}
+{% load static %}
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header page-headerTWO">
+    <h1 class="display-3 text-uppercase text-white mb-3">About</h1>
+    <div class="d-inline-flex text-white">
+        <h6 class="text-uppercase m-0"><a class="text-white" href="{% url 'index' %}">Home</a></h6>
+        <h6 class="text-body m-0 px-3">/</h6>
+        <h6 class="text-uppercase text-body m-0">About</h6>
+    </div>
+</div>
+<!-- Page Header Start -->
+
+
+<!-- About Start -->
+<!-- About Section Start -->
+<div class="container-fluid py-5 bg-light">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <!-- Left: Image -->
+            <div class="col-lg-6 mb-4 mb-lg-0 text-center">
+                <img src="{% static 'img/about.png' %}" alt="About RideOnRentt"
+                     class="img-fluid rounded shadow-sm" style="max-width: 90%;">
+            </div>
+
+            <!-- Right: Content -->
+            <div class="col-lg-6">
+                <h2 class="text-uppercase font-weight-bold mb-3" style="color: #003366;">
+                    Welcome to <span class="text-primary">RideOnRentt</span>
+                </h2>
+                <p class="mb-3" style="font-size: 1.1rem; color: #333; line-height: 1.8;">
+                    RideOnRentt is a modern car rental platform that connects customers with a wide selection of vehicles available for rent.
+                    Designed for convenience and flexibility, it allows users to browse, book, and manage rentals entirely online.
+                </p>
+                <p style="font-size: 1.1rem; color: #333; line-height: 1.8;">
+                    Car owners can easily list their vehicles, while customers enjoy a seamless booking experience backed by verified listings and secure transactions. Whether you're looking for a short-term ride or a long-term rental solution, RideOnRentt makes mobility simple, accessible, and reliable.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About Section End -->
+
+<!-- About End -->
+
+
+<!-- Banner Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row mx-0">
+            <div class="col-lg-6 px-0">
+                <div class="px-5 bg-secondary d-flex align-items-center justify-content-between" style="height: 350px;">
+                    <img class="img-fluid flex-shrink-0 ml-n5 w-50 mr-4" src="{% static 'img/banner-left.png' %}"
+                         alt="">
+                    <div class="text-right">
+                        <h3 class="text-uppercase text-light mb-3">Join as an owner?</h3>
+                        <p class="mb-4">Earn extra income by listing your car on RideOnRentt. Flexible hours, full control, and exclusive perks await!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 px-0">
+                <div class="px-5 bg-dark d-flex align-items-center justify-content-between" style="height: 350px;">
+                    <div class="text-left">
+                        <h3 class="text-uppercase text-light mb-3 " style="color: #2B2E4A !important;">Looking for a car?</h3>
+                        <p class="mb-4">Explore our wide range of vehicles available for rent at competitive prices. Find the perfect car for your needs today!</p>
+                    </div>
+                    <img class="img-fluid flex-shrink-0 mr-n5 w-50 ml-4" src="{% static 'img/banner-right.png' %}"
+                         alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner End -->
+
+
+<!-- Vendor Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="owl-carousel vendor-carousel">
+            <div class="bg-light p-4">
+                <img src="{% static 'img/vendor-1.png' %}" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="{% static 'img/vendor-2.png' %}" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="{% static 'img/vendor-3.png' %}" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="{% static 'img/vendor-4.png' %}" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="{% static 'img/vendor-5.png' %}" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="{% static 'img/vendor-6.png' %}" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="{% static 'img/vendor-7.png' %}" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="{% static 'img/vendor-8.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Vendor End -->
+
+{% endblock %}

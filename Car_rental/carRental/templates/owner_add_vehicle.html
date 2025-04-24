@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="container mt-5 " style="margin-top: 90px !important;">
+    <h2 class="text-center mb-4">Register as Owner & List Your Car</h2>
+
+    {% if not otp_verified %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="is_owner" value="true">
+
+        <!-- Owner Info Card -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">Owner Information</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="firstName">First Name <span class="text-danger">*</span></label>
+                        <input type="text" name="firstName" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lastName">Last Name <span class="text-danger">*</span></label>
+                        <input type="text" name="lastName" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="emailid">Email <span class="text-danger">*</span></label>
+                        <input type="email" name="emailid" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ContactNo">Contact Number <span class="text-danger">*</span></label>
+                        <input type="text" name="ContactNo" class="form-control" maxlength="10" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dob">Date of Birth <span class="text-danger">*</span></label>
+                        <input type="date" name="dob" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Country">Country <span class="text-danger">*</span></label>
+                        <input type="text" name="Country" class="form-control" value="USA" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="State">State <span class="text-danger">*</span></label>
+                        <input type="text" name="State" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="City">City <span class="text-danger">*</span></label>
+                        <input type="text" name="City" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ZipCode">Zip Code <span class="text-danger">*</span></label>
+                        <input type="text" name="ZipCode" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Address">Address <span class="text-danger">*</span></label>
+                        <textarea name="Address" class="form-control" rows="2" required></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vehicle Info Card -->
+        <div class="card mb-4">
+            <div class="card-header bg-secondary text-white">Car Details</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Vehicle Title <span class="text-danger">*</span></label>
+                    <input type="text" name="VehiclesTitle" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Brand <span class="text-danger">*</span></label>
+                    <select name="VehiclesBrand" class="form-control" required>
+                        <option value="">Select Brand</option>
+                        {% for brand in brands %}
+                            <option value="{{ brand.id }}">{{ brand.BrandName }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Overview <span class="text-danger">*</span></label>
+                    <textarea name="VehiclesOverview" class="form-control" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Price Per Day ($) <span class="text-danger">*</span></label>
+                    <input type="number" name="PricePerDay" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Fuel Type <span class="text-danger">*</span></label>
+                    <select name="FuelType" class="form-control" required>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="EV">EV</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Model Year <span class="text-danger">*</span></label>
+                    <input type="text" name="ModelYear" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Seating Capacity <span class="text-danger">*</span></label>
+                    <input type="number" name="SeatingCapacity" class="form-control" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Images -->
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">Upload Car Images</div>
+            <div class="card-body">
+                <div class="row">
+                    {% for i in "12345" %}
+                    <div class="form-group col-md-4">
+                        <label>Image {{ i }} <span class="text-danger">*</span></label>
+                        <input type="file" name="Vimage{{ i }}" class="form-control" required>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Accessories Grid -->
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">Car Accessories</div>
+            <div class="card-body">
+                <div class="row">
+                    {% for acc in accessories %}
+                    <div class="form-check col-md-4">
+                        <input type="checkbox" class="form-check-input" name="{{ acc }}" value="yes" checked>
+                        <label class="form-check-label">{{ acc|capfirst|cut:"_" }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" name="verify_email" class="btn btn-primary btn-lg">Send OTP & Submit</button>
+        </div>
+    </form>
+
+    {% else %}
+    <div class="alert alert-info text-center">
+        <h5>OTP has already been sent to your email. Please check your inbox and verify.</h5>
+        <a href="{% url 'verify_otp' %}" class="btn btn-success mt-3">Go to OTP Verification</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

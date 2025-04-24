@@ -1,0 +1,32 @@
+<!-- verify_otp.html -->
+{% extends 'base.html' %}
+{% block main %}
+<div class="container mt-5">
+    <h3 class="text-center">Verify Your Email</h3>
+    <p class="text-center">We’ve sent an OTP to your email. Please enter it below to proceed.</p>
+
+    {% if error %}
+    <div class="alert alert-danger text-center">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" class="w-50 mx-auto mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="otp">Enter OTP</label>
+            <input type="text" name="otp" id="otp" class="form-control" required>
+        </div>
+        <button type="submit" name="submit_otp" class="btn btn-primary mt-3 w-100">Verify OTP</button>
+    </form>
+</div>
+{% endblock %}
+
+
+<!-- add_vehicle_success.html -->
+{% extends 'base.html' %}
+{% block main %}
+<div class="container mt-5 text-center">
+    <h2 class="text-success">Vehicle Submission Successful!</h2>
+    <p>Your car details have been submitted and are pending admin approval.</p>
+    <a href="{% url 'index' %}" class="btn btn-outline-primary mt-3">Return to Home</a>
+</div>
+{% endblock %}
